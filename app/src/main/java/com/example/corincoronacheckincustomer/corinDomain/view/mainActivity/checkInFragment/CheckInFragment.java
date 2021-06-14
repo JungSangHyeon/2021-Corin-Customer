@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResult;
 
 import com.example.corincoronacheckincustomer.R;
+import com.example.corincoronacheckincustomer.corinDomain.model.UserEntity;
 import com.example.corincoronacheckincustomer.corinDomain.view.loginActivity.LoginActivity;
 import com.example.corincoronacheckincustomer.corinDomain.model.CorinEntity;
 import com.example.corincoronacheckincustomer.jshCrossDomain.tech.ZXing;
@@ -52,7 +53,9 @@ public class CheckInFragment extends JSHViewModelFragment<CorinEntity> {
             this.descriptionTextView.setText(R.string.checkInFragment_loginButtonDescriptionTextViewText);
             this.loginButton.setVisibility(View.VISIBLE);
         }else{
-            ZXing.showQRCode(this.qrCodeImageView, this.entity.getLoginUser().toString());
+            UserEntity user = this.entity.getLoginUser();
+            String info =  user.getUserName() +" "+user.getAge()+" "+user.getGender().ordinal();
+            ZXing.showQRCode(this.qrCodeImageView, info);
             this.qrCodeImageView.setVisibility(View.VISIBLE);
             this.descriptionTextView.setVisibility(View.VISIBLE);
             this.descriptionTextView.setText(R.string.checkInFragment_checkInByQrCode);

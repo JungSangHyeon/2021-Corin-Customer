@@ -46,7 +46,11 @@ public class SignUpActivity extends JSHViewModelActivity<CorinEntity> {
     @Override protected void onModelUpdate() { }
 
     private void sighUp() {
-        if(this.passwordEditText.getText().toString().equals(this.passwordCheckEditText.getText().toString())){
+        if(!this.isAllEntered(this.emailEditText, this.passwordEditText, this.passwordCheckEditText, this.nameEditText, this.ageEditText)){
+            Toast.makeText(this, R.string.signUpActivity_enterAllValue, Toast.LENGTH_SHORT).show();
+        }else if(!this.passwordEditText.getText().toString().equals(this.passwordCheckEditText.getText().toString())){
+            Toast.makeText(this, R.string.signUpActivity_passwordAndCheckDifferent, Toast.LENGTH_SHORT).show();
+        }else{
             UserEntity userEntity = new UserEntity(
                     this.emailEditText.getText().toString(),
                     this.passwordEditText.getText().toString(),
@@ -60,8 +64,13 @@ public class SignUpActivity extends JSHViewModelActivity<CorinEntity> {
             Toast.makeText(this, R.string.signUpActivity_signUpComplete, Toast.LENGTH_SHORT).show();
             this.setResult(Activity.RESULT_OK);
             this.finish();
-        }else{
-            Toast.makeText(this, R.string.signUpActivity_passwordAndCheckDifferent, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean isAllEntered(EditText...editTexts){
+        for(EditText editText : editTexts){
+            if(editText.getText().toString().equals("")) return false;
+        }
+        return true;
     }
 }

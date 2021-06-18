@@ -24,6 +24,7 @@
         <!--  Sign Up Activity  -->
         <string name="signUpActivity_signUpButtonText">회원가입</string>
         <string name="signUpActivity_signUpComplete">회원가입 되었습니다</string>
+        <string name="signUpActivity_enterAllValue">모든 값을 입력해 주세요</string>
         <string name="signUpActivity_passwordAndCheckDifferent">비밀번호와 확인이 다릅니다</string>
 
         <!--  Edit My Info Activity  -->
@@ -57,6 +58,11 @@
         <string name="myCorinFragment_logoutAndSignOutLayout_logOutTextViewText">로그아웃</string>
         <string name="myCorinFragment_logoutAndSignOutLayout_sighOutTextView">회원탈퇴</string>
         <string name="myCorinFragment_infoEditCompleteText">정보 수정을 완료했습니다</string>
+        <string name="myCorinFragment_signOutDialogTitleText">회원 탈퇴</string>
+        <string name="myCorinFragment_signOutDialogMessageText">정말로 탈퇴하시겠습니까?</string>
+        <string name="myCorinFragment_signOutDialogOkText">예</string>
+        <string name="myCorinFragment_signOutDialogCompleteToastText">회원 탈퇴되었습니다</string>
+        <string name="myCorinFragment_signOutLogoutCompleteText">로그아웃 되었습니다</string>
 
         <!--  History Fragment  -->
         <string name="historyFragment_toolBarTitle">출입 기록</string>

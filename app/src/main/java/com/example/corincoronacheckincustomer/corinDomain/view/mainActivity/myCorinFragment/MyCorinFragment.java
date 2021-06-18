@@ -1,5 +1,6 @@
 package com.example.corincoronacheckincustomer.corinDomain.view.mainActivity.myCorinFragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -11,11 +12,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.corincoronacheckincustomer.R;
 import com.example.corincoronacheckincustomer.corinDomain.Constant;
+import com.example.corincoronacheckincustomer.corinDomain.model.CorinEntity;
+import com.example.corincoronacheckincustomer.corinDomain.model.UserEntity;
 import com.example.corincoronacheckincustomer.corinDomain.view.editMyInfoActivity.EditMyInfoActivity;
 import com.example.corincoronacheckincustomer.corinDomain.view.loginActivity.LoginActivity;
 import com.example.corincoronacheckincustomer.corinDomain.view.signUpActivity.SignUpActivity;
-import com.example.corincoronacheckincustomer.corinDomain.model.CorinEntity;
-import com.example.corincoronacheckincustomer.corinDomain.model.UserEntity;
 import com.example.corincoronacheckincustomer.jshCrossDomain.view.fragment.JSHViewModelFragment;
 import com.example.corincoronacheckincustomer.jshCrossDomain.view.widget.JSHSelectItem;
 
@@ -95,13 +96,26 @@ public class MyCorinFragment extends JSHViewModelFragment<CorinEntity> {
     }
 
     private void signOut() {
-        this.deleteNowUserInfo();
-        this.logout();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setTitle(R.string.myCorinFragment_signOutDialogTitleText);
+        builder.setMessage(R.string.myCorinFragment_signOutDialogMessageText);
+        builder.setPositiveButton(
+                R.string.myCorinFragment_signOutDialogOkText,
+                (dialog, which) -> {
+                    this.deleteNowUserInfo();
+                    this.entity.setLogin(false);
+                    this.entity.setLoginUser(null);
+                    Toast.makeText(this.getContext(), R.string.myCorinFragment_signOutDialogCompleteToastText, Toast.LENGTH_SHORT).show();
+                    this.save();
+                }
+        );
+        builder.show();
     }
 
     private void logout() {
         this.entity.setLogin(false);
         this.entity.setLoginUser(null);
+        Toast.makeText(this.getContext(), R.string.myCorinFragment_signOutLogoutCompleteText, Toast.LENGTH_SHORT).show();
         this.save();
     }
 
